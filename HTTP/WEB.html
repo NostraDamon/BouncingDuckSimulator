@@ -58,15 +58,35 @@
 					}
 				});
 				u.initPlugin(jQuery("#unityPlayer")[0], "WEB.unity3d");
-				
-				function Connect()
-				{
-					if (u.getUnity() != null)
-					{
-						u.getUnity().SendMessage("_HTTP", "Connect", "Connected!");
-					}
-				}
 			});
+			
+			function Connect(arg)
+			{
+				if (u.getUnity() != null)
+				{
+					u.getUnity().SendMessage("_HTTP", "Connect", arg);
+				}
+				else
+				{
+					alert('getUnity is null.');
+				}
+			}
+				
+			function UpdateBounces(arg)
+			{
+				var label;
+				
+				if (arg == 0 || arg == 1)
+				{
+					label = " Bounce";
+				}
+				else
+				{
+					label = " Bounces";
+				}
+				
+				document.getElementById('contentBounces').innerHTML = '<text>' + arg + label + '&nbsp;</text>';
+			}
 		-->
 		</script>
 		<style type="text/css">
@@ -78,10 +98,10 @@
 			text-align: center;
 		}
 		a:link, a:visited {
-			color: #000;
+			color: #bbbbbb;
 		}
 		a:active, a:hover {
-			color: #666;
+			color: #ffdd00;
 		}
 		p.header {
 			font-size: small;
@@ -93,7 +113,7 @@
 			font-size: x-small;
 		}
 		div.content {
-			margin: 10px;
+			margin: 6px;
 			width: 1024px;
 		}
 		div.broken,
@@ -116,30 +136,73 @@
 		div.broken {
 			display: none;
 		}
-		td.canva {
-			background-color: #383838;
-			background-position: 4px 4px 4px 4px;
-			margin: 4px 4px 4px 4px;
+		table
+		{
+			border: 2px solid black;
+		}
+		div.canva {
+			//background-color: #000000;
+			width: 100%;
+			height: 100%;
+		}
+		div.canvatitle {
+			background-color: #222222;
+			width: 100%;
+			height: 100%;
+		}
+		td.outcanva {
+			padding: 5px;
 		}
 		div#unityPlayer {
 			cursor: default;
 			height: 576px;
 			width: 1024px;
 		}
+		@font-face {
+		  font-family: "Cartoon Toy";
+		  src: url("./fonts/CartoonToy.ttf") format("truetype");
+		}
+		text {
+		  font-family: "Cartoon Toy", sans-serif;
+		  font-size: 50px;
+		  color: #FFFFFF;
+		  display: inline-block;
+		}
+		textsmall {
+		  font-family: "Cartoon Toy", sans-serif;
+		  font-size: 30px;
+		  color: #FFFFFF;
+		  display: inline-block;
+		}
 		-->
 		</style>
 	</head>
 	<body background="images\html_background.png">
-		<table border="2px white solid;" width="100%">
+		<table width="100%" border=1>
 		
-			<tr><td class="canva" colspan="3" height="64px"><div class="header"><b>Bouncing Duck Simulator</b></div></td></tr>
+			<tr>
+				<td class="outcanva"><div class="canva"><b>Achievements</b></div></td>
+				<td class="outcanva"><div class="canvatitle"><b><textsmall>The</textsmall><text>&nbsp;Bouncing Duck Simulator</text></b></div></td>
+				<td class="outcanva"><div class="canva"><b>Quacks</b></div></td>
+			</tr>
+			
+			<tr><td class="outcanva" colspan="3"><div class="canva"><span id="contentBounces"><text>0 Bounce&nbsp;</text></span><img src="images\bounces_duck.png"></img></div></td></tr>
 			
 			<tr>
 			
-			<td class="canva" width="50%">aaa</td>
+			<td class="outcanva" width="50%" valign="top">
+				<table width="100%" border=1>
+					<tr>
+						<td><div class="canvatitle"><text>My Ducks</text></div></td>
+					</tr>
+					<tr>
+						<td><img src="images\rubber_duck.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</img><img src="images\arrow_left.png"><text>2 / 6</text><img src="images\arrow_right.png"></img></td>
+					</tr>
+				</table>
+			</td>
 			
 			<td>
-				<div class="content" style="outline:4px black solid;">
+				<div class="content" style="outline:2px #000000 solid;">
 					<div id="unityPlayer">
 						<div class="missing">
 							<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
@@ -150,13 +213,22 @@
 				</div>
 			</td>
 			
-			<td class="canva" width="50%">aaa</td>
+			<td class="outcanva" width="50%"><div class="canva">skins</div></td>
 			
 			</tr>
 			
-			<tr><td class="canva" colspan="3" height="128px">bbb</td></tr>
+			<tr><td class="outcanva" colspan="3" valign="top">
+				<table width="100%" border=1>
+					<tr>
+						<td><div class="canva" width="25%">Labo</div></td>
+						<td><div class="canva" width="25%">Factory</div></td>
+						<td><div class="canva" width="25%">Test Room</div></td>
+						<td><div class="canva" width="25%">Workout</div></td>
+					</tr>
+				</table>
+			</td></tr>
 			
-			<tr><td class="canva" colspan="3"><p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p></td></tr>
+			<tr><td colspan="3"><p class="footer"><div class="canvatitle"><textsmall>Created by <a href="https://twitter.com/NostraDam0n" title="Twitter">@NostraDam0n</a></textsmall></div></p></td></tr>
 			
 		</table>
 	</body>

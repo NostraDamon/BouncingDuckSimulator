@@ -10,15 +10,17 @@ public class DuckBehavior : MonoBehaviour
 
     private Vector3 lastPos;
 
-    GUIText guiBounces;
+    //GUIText guiBounces;
     _CP CP;
+    _HTTP HTTP;
 
 	// Use this for initialization
 	void Start ()
     {
         // Get CP
         CP = GameObject.Find("_CP").GetComponent<_CP>();
-        guiBounces = GameObject.Find("GUI_Bounces").guiText;
+        HTTP = GameObject.Find("_HTTP").GetComponent<_HTTP>();
+        //guiBounces = GameObject.Find("GUI_Bounces").guiText;
 
         // Set random rotation on start
         Vector3 randRot;
@@ -49,7 +51,8 @@ public class DuckBehavior : MonoBehaviour
     {
         CP.bounces += 1;
         CP.CheckBouncingReward();
-        guiBounces.text = "Bounces: " + CP.bounces.ToString();
+        HTTP.UpdateBounces();
+        //guiBounces.text = "Bounces: " + CP.bounces.ToString();
 
         // Set audio clip and play
         int rand;
